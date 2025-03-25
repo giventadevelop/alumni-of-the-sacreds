@@ -1,0 +1,148 @@
+:root {
+  --primary-color: #1a237e;
+  --secondary-color: #0d47a1;
+}
+
+/* Slider Styles */
+.slider-active-wrap {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Set fixed height */
+}
+
+.single-slide-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Background styles */
+.slide-bg-1 {
+  background-image: url('/img/slider/slide-1.jpg');
+}
+
+.slide-bg-2 {
+  background-image: url('/img/slider/slide-2.jpg');
+}
+
+.slide-bg-3 {
+  background-image: url('/img/slider/slide-3.jpg');
+}
+
+/* Swiper styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-color: transparent;
+}
+
+/* Content styles */
+.slider-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.slider-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.slider-content h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.slider-content span {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 15px;
+  color: var(--primary-color);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.slider-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+/* Navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 50% !important;
+  z-index: 10;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  color: #000;
+}
+
+/* Header Styles */
+.header-bottom-area {
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Upcoming Events Styles */
+.upcoming-event-wrap {
+  margin-top: 50px;
+}
+
+.up-event-titile h3 {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+/* Add your other styles here */
+
+/* Comment out the duplicate background definitions */
+/*.slide-bg-1 {
+  background: url('/img/slider/slide-1.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.slide-bg-2 {
+  background: url('/img/slider/slide-2.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.slide-bg-3 {
+  background: url('/img/slider/slide-3.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}*/
+
+/* Swiper Navigation Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 50% !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  color: #000;
+}

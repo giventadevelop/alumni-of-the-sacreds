@@ -1,101 +1,121 @@
-import Image from "next/image";
+import { Calendar } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="space-y-8 py-8">
+      {/* Mission Statement */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-mono tracking-wider">ESTD of This Alumni Association</h2>
+            <h3 className="text-2xl font-mono">'Alumni Of The Sacreds' Relations</h3>
+            <h4 className="text-xl font-mono border-b-4 border-amber-500 inline-block">MISSION</h4>
+          </div>
+          <div className="space-y-6 border-l-4 border-gray-300 pl-6">
+            <p className="text-gray-600 text-lg font-mono leading-relaxed max-w-3xl mx-auto">
+              Seeking to engage all 'Alumni Of The Sacreds' in a mutually beneficial, lifelong connection to each other, their school, and encourage alumni support and guidance to advance The Sacreds' eminence for future generations.
+            </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <p className="text-gray-600 text-lg font-mono leading-relaxed max-w-3xl mx-auto">
+              SHEMHSS Moolamattom alumni community also called "Alumni Of The Sacreds" or "The Sacreds" in short is a great way to stay in touch with SHEMHSS and your classmates.
+            </p>
+
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Upcoming Events */}
+      <section className="bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h2 className="text-2xl font-semibold mb-6 text-center">Upcoming Events</h2>
+          <div className="bg-white rounded-lg shadow p-6 text-center">
+            <Calendar className="mx-auto mb-4 text-gray-400" size={48} />
+            <p className="text-gray-600">No events scheduled</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Responsibility */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-semibold mb-8 text-center">Our Responsibility</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+            <div className="flex justify-center">
+              <Image
+                src="/images/scholarship.png"
+                alt="Scholarship"
+                width={48}
+                height={48}
+                className="mb-4"
+              />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-center">Scholarship</h3>
+            <p className="text-gray-600 text-sm">
+              Scholarships for academically talented students. Low-income students who excel in secondary school qualify for scholarships that reward good grades and civic participation.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+            <div className="flex justify-center">
+              <Image
+                src="/images/help-students.png"
+                alt="Help Current Students"
+                width={48}
+                height={48}
+                className="mb-4"
+              />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-center">Help Current Students</h3>
+            <p className="text-gray-600 text-sm">
+              We believe that young people deserve the resources and support to succeed based on their talent, intelligence, and capabilities. We seek out students with great potential, but unequal opportunity, and partner with them to ensure their success in school, work, and life.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+            <div className="flex justify-center">
+              <Image
+                src="/images/community.png"
+                alt="Build Our Community"
+                width={48}
+                height={48}
+                className="mb-4"
+              />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-center">Build Our Community</h3>
+            <p className="text-gray-600 text-sm">
+              Help Arakulam panchayat community where leaders and teams can connect, communicate, and collaborate on the issues and challenges that are essential to the growth and success of the Moolamattom community.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h2 className="text-2xl font-semibold mb-8 text-center">Our Gallery</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+              <div key={num} className="relative aspect-square overflow-hidden rounded-lg">
+                <Image
+                  src={`/images/gallery/gallery-${num}.jpg`}
+                  alt={`Gallery image ${num}`}
+                  fill
+                  className="object-cover hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Scholarship Promo */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <h2 className="text-3xl font-bold mb-4">School Alumni Provide <span className="text-yellow-300">Scholarship</span> For Talented Student!</h2>
+          <p className="text-lg mb-8 max-w-3xl mx-auto">
+            Alumni Needs enables you to harness the power of your alumni network. Whatever may be the need academic, relocation, career, projects, mentorship, etc you can ask the community and get support.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
