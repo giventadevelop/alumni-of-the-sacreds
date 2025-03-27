@@ -2,253 +2,294 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-8 space-y-16">
-      {/* Hero Section */}
-      <section className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold">About Us</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Alumni Needs enables you to harness the power of your alumni network.
-        </p>
-      </section>
+    <div className="container mx-auto px-4 py-8">
+      {/* Page Title */}
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-gray-800">About Us</h1>
+        <div className="w-24 h-1 bg-orange-500 mx-auto mt-4"></div>
+      </div>
 
-      {/* Mission Section */}
-      <section className="grid md:grid-cols-2 gap-8 items-center">
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold">Our Mission</h2>
-          <p className="text-lg">
-            Seeking to engage all 'Alumni Of The Sacreds' in a mutually beneficial, lifelong connection to each other, their school, and encourage alumni support and guidance to advance The Sacreds's eminence for future generations.
-          </p>
-        </div>
-        <div className="relative h-[300px] md:h-[400px]">
-          <Image
-            src="/images/icons/logo.png"
-            alt="Alumni Logo"
-            fill
-            className="object-contain"
-          />
-        </div>
-      </section>
+      <div className="space-y-12 border-2 border-gray-200 rounded-lg p-8 shadow-sm">
+        {/* Main Content */}
+        <section className="prose max-w-none">
+          <h1 className="text-4xl font-bold mb-8">ESTD of This Alumni Association</h1>
 
-      {/* Demographics Section */}
-      <section className="bg-muted/50 p-8 rounded-lg space-y-6">
-        <h2 className="text-3xl font-bold">Demographics & History</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-4">
-            <p>
-              'Alumni Of The Sacreds' is the formal name for our family of over 4000 living The Sacreds graduates. Of these, the split of undergraduate degree (52.5%) and graduate degree holders (47.5%) is fairly even. Most alumni reside in India, but The Sacreds does have over 1000 alumni living abroad.
-            </p>
-            <p>
-              In 2019 the various alumni organizations at The Sacreds joined together in a federation and branded it as 'Alumni Of The Sacreds'.
+          {/* Mission Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold italic text-gray-600 font-mono">Alumni Of The Sacreds Relations</h2>
+            <h3 className="text-2xl font-semibold mt-6 relative inline-block">
+              MISSION
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-orange-500"></div>
+            </h3>
+            <p className="text-gray-600 text-lg font-mono leading-relaxed max-w-3xl mx-auto mt-4 italic text-justify">
+              Seeking to engage all Alumni Of The Sacreds in a mutually beneficial, lifelong connection
+              to each other, their school, and encourage alumni support and guidance to advance
+              The Sacreds&apos;s eminence for future generations.
             </p>
           </div>
-          <div className="space-y-4">
-            <h3 className="text-2xl font-semibold">Key Statistics</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-background rounded-lg text-center">
-                <p className="text-3xl font-bold">4,000+</p>
-                <p className="text-sm text-muted-foreground">Living Graduates</p>
-              </div>
-              <div className="p-4 bg-background rounded-lg text-center">
-                <p className="text-3xl font-bold">1,000+</p>
-                <p className="text-sm text-muted-foreground">International Alumni</p>
-              </div>
+
+          {/* School Building Image */}
+          <div className="mb-12">
+            <div className="relative w-full h-[300px]">
+              <Image
+                src="/images/school-building.jpg"
+                alt="Sacred Heart School Building"
+                fill
+                className="object-cover rounded-lg"
+                priority
+              />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Alumni Trustees Section */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-bold">Alumni Trustees</h2>
-        <div className="bg-muted/50 p-8 rounded-lg">
-          <p className="text-lg">
-            Fourteen of the School's trustees are nominated and elected through procedures established and administered by 'Alumni Of The Sacreds'. These alumni trustees reflect the overall diversity of The Sacreds's alumni population. The president of 'Alumni Of The Sacreds', Sini C. Joseph, C'87 also serves as an alumni trustee and in this capacity sits on the Trustees' Executive Committee.
-          </p>
-        </div>
-      </section>
+          {/* Demographics Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Demographics, History, Purpose, and Structure</h3>
+            <p className="mt-4 text-justify">
+              Alumni Of The Sacreds is the formal name for our family of over 4000 living The Sacreds
+              graduates. Of these, the split of undergraduate degree (52.5%) and graduate degree holders
+              (47.5%) is fairly even. Most alumni reside in India, but The Sacreds does have over 1000
+              alumni living abroad. Not surprisingly, the largest geographic concentration of our alumni
+              is in the state of Kerala area.
+            </p>
+            <p className="mt-4 text-justify">
+              In 2019 the various alumni organizations at The Sacreds (the clubs, the class, and the
+              school societies, then known as departmental societies) joined together in a federation
+              and then branded it as Alumni Of The Sacreds.
+            </p>
+            <p className="mt-4 text-justify">
+              The objects and purposes of Alumni Of The Sacreds are to promote the interest and welfare
+              of the School of The SH and its alumni; to inspire, develop and maintain the interest of
+              the alumni in the School; to help alumni keep alive the friendships, associations and
+              interests they formed as students at The SH; to foster giving to the School; to maintain
+              close cooperation among alumni, officers and Trustees of the School and to establish a
+              medium through which the alumni may support and advance the cause of higher education by
+              the School; all of the foregoing to be consistent with the policies established by the
+              Trustees of the School.
+            </p>
+          </div>
 
-      {/* Structure Section */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-bold">Governance Structure</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Council of Representatives</h3>
-            <p>Approximately 50 members representing all organized constituencies of the alumni.</p>
+          {/* Governance Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Governance Structure</h3>
+            <p className="mt-4 text-justify">
+              The Alumni Of The Sacreds governance structure consists of three parts: the Council of
+              Representatives, the Board of Directors, and the Executive Committee. The Council of
+              Representatives, approximately 50 in number, is a microcosm of Alumni Of The Sacreds and
+              has representation from all organized constituencies of the alumni. The management of
+              Alumni Of The Sacreds is vested in the Board of Directors, approximately 65 in number,
+              who conduct the business of Alumni Of The Sacreds under its By-Laws. Finally, an
+              Executive Committee of 9 members has the power to operate with the full power of the
+              Board between Board meetings; the Committee&apos;s actions, however, must be approved by
+              the Board at its next meeting.
+            </p>
           </div>
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Board of Directors</h3>
-            <p>About 65 members who conduct the business of 'Alumni Of The Sacreds' under its By-Laws.</p>
-          </div>
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Executive Committee</h3>
-            <p>9 members with full power to operate between Board meetings, subject to Board approval.</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Programs Section */}
-      <section className="space-y-8">
-        <h2 className="text-3xl font-bold">Our Programs</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">The Sacreds Traditions</h3>
-            <p>A comprehensive approach to student and young alumni development, creating early understanding of The Sacreds's institutional mission and traditions.</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Cultivate lifelong relationships with students</li>
-              <li>Teach about The Sacreds' rich history</li>
+          {/* Alumni Trustees Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Alumni Trustees</h3>
+            <p className="mt-4 text-justify">
+              Fourteen of the School&apos;s trustees are nominated and elected through procedures
+              established and administered by Alumni Of The Sacreds. These alumni trustees reflect
+              the overall diversity of The Sacreds&apos;s alumni population. The president of
+              Alumni Of The Sacreds, Sini C. Joseph, C&apos;87 also serves as an alumni trustee
+              and in this capacity sits on the Trustees&apos; Executive Committee.
+            </p>
+          </div>
+
+          {/* Traditions Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">The Sacreds Traditions: Building Our Community</h3>
+            <p className="mt-4 text-justify">
+              The Sacreds Traditions program is a comprehensive approach to student and young alumni
+              development/alumni relations programming. The program is designed to:
+            </p>
+            <ul className="list-disc pl-5 mt-4 space-y-2">
+              <li>Cultivate a lifelong relationship with our students</li>
+              <li>Teach students about The Sacreds&apos; rich history and diverse traditions</li>
               <li>Foster tradition and pride</li>
-              <li>Promote class unity</li>
+              <li>Promote and inspire class unity</li>
+              <li>Offer opportunities for direct communication between students and alumni</li>
+              <li>Educate students about institutional strengths and challenges</li>
+              <li>Keep young alumni engaged and connected to The Sacreds after graduation</li>
             </ul>
           </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Alumni Education & Travel</h3>
-            <p>Offering educational programs and travel opportunities that engage alumni worldwide, integrating faculty and alumni experts.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Interview Program</h3>
-            <p>Alumni interviewers serve as ambassadors, helping prospective students learn about The Sacreds and assisting the Admissions Office.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Regional Clubs</h3>
-            <p>A worldwide network providing intellectual, cultural, social, and networking events through 4 domestic and 4 international clubs.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Multicultural Outreach</h3>
-            <p>Encouraging diverse alumni connections and engagement through various programs and initiatives.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Classes & Reunions</h3>
-            <p>Organizing class-focused initiatives and quinquennial reunions for Old Guard, Core Alumni, and Young Alumni.</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="bg-muted/50 p-8 rounded-lg">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center space-y-2">
-            <p className="text-4xl font-bold">4,025</p>
-            <p className="text-muted-foreground">Members</p>
-          </div>
-          <div className="text-center space-y-2">
-            <p className="text-4xl font-bold">8,725</p>
-            <p className="text-muted-foreground">Photos</p>
-          </div>
-          <div className="text-center space-y-2">
-            <p className="text-4xl font-bold">231+</p>
-            <p className="text-muted-foreground">Events</p>
-          </div>
-          <div className="text-center space-y-2">
-            <p className="text-4xl font-bold">32+</p>
-            <p className="text-muted-foreground">Awards</p>
-          </div>
-        </div>
-      </section>
+          {/* Programs Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Programs and Initiatives</h3>
 
-      {/* Executive Committee Section */}
-      <section className="space-y-8">
-        <h2 className="text-3xl font-bold text-center">Our Executive Committee</h2>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {[
-            { name: "BIJU GEORGE", image: "/images/executive/1.jpg" },
-            { name: "JINSON S VELAMKUNNEL", image: "/images/executive/3.jpg" },
-            { name: "SAJESH BABU BALAKRISHNAN", image: "/images/executive/4.jpg" },
-            { name: "SINI C JOSEPH", image: "/images/executive/5.jpg" },
-            { name: "MERLINE AUGUSTINE", image: "/images/executive/6.jpg" },
-            { name: "SANUJA JOSEPH", image: "/images/executive/sanuja_joseph.jpg" }
-          ].map((member) => (
-            <div key={member.name} className="group">
-              <div className="relative h-[300px] overflow-hidden rounded-lg">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-center">{member.name}</h3>
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">Alumni Education, Travel and Career Networking</h4>
+              <p className="mt-2 text-justify">
+                The Director of Alumni Education, Travel and Career Networking designs and implements
+                educational programs that engage alumni worldwide. The Travel program offers alumni
+                opportunities to travel globally while maintaining intellectual and social connections
+                with The Sacreds.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Communication Section */}
-      <section className="space-y-8">
-        <h2 className="text-3xl font-bold">Stay Connected</h2>
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">Classes & Reunions</h4>
+              <p className="mt-2 text-justify">
+                The Classes & Reunions team coordinates class-focused initiatives and the two largest
+                alumni events: Homecoming and Alumni Weekend. Alumni are categorized as Old Guard
+                (20+ years), Core Alumni (10-20 years), and Young Alumni (0-10 years).
+              </p>
+            </div>
 
-        {/* The Sacreds Gazette */}
-        <div className="bg-muted/50 p-8 rounded-lg space-y-4">
-          <h3 className="text-2xl font-semibold">The Sacreds Gazette</h3>
-          <p className="text-lg">
-            Our official alumni magazine, published three times per year, reaching ~240,000 readers with features, letters, and news about the School community. The magazine carries features, letters to the editor, and news about the School, faculty, students, and alumni.
-          </p>
-        </div>
-
-        {/* Social Media */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Social Media Presence</h3>
-            <p>Connect with thousands of alumni through:</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Facebook</li>
-              <li>LinkedIn</li>
-              <li>Twitter</li>
-              <li>YouTube</li>
-              <li>Instagram</li>
-              <li>Frankly The Sacreds (daily blog)</li>
-            </ul>
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">Regional Clubs</h4>
+              <p className="mt-2 text-justify">
+                From Moolamattom to North America, our Regional Club network provides year-round
+                intellectual, cultural, and social events through 4 domestic and 4 international clubs.
+              </p>
+            </div>
           </div>
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Marketing & Communications</h3>
-            <p>Stay updated through various channels:</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Proudly The Sacreds (annual resource guide)</li>
-              <li>Red & Blue Online (bi-monthly newsletter)</li>
-              <li>Homecoming Guide</li>
-              <li>Alumni Weekend Guide</li>
-              <li>Mobile apps</li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
-      {/* Awards Section */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-bold">Alumni Awards</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Alumni Award of Merit</h3>
-            <p>
-              A celebration of The Sacreds's most passionate and dedicated alumni volunteers. These awards recognize outstanding service to the School of Sacred Heart, with recipients chosen by the Awards & Resolutions Committee.
+          {/* Communications Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Communications</h3>
+
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">The Sacreds Gazette</h4>
+              <p className="mt-2 text-justify">
+                Our official alumni magazine, published three times per year, reaches ~240,000 readers
+                with features, letters, and comprehensive news about our community.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">Social Media</h4>
+              <p className="mt-2 text-justify">
+                Active presence across major platforms including Facebook, LinkedIn, Twitter, YouTube,
+                Instagram, and iTunesU. Our daily blog, Frankly The Sacreds, provides regular updates.
+              </p>
+            </div>
+          </div>
+
+          {/* Interview Program Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Alumni Interview Program</h3>
+            <p className="mt-4 text-justify">
+              Alumni interviewers help high school students learn more about The Sacreds, and they help
+              the Admissions Office learn more about applicants to the School. The Sacreds&apos;s alumni
+              interviewers serve as ambassadors in their local communities, providing crucial assistance
+              to the Undergraduate Admissions Office as they work to select the next generation of
+              The Sacreds&apos; students. Although members are involved in a variety of activities, the
+              primary goal of the Alumni Interview Program is to offer an interview to every student who
+              applies as a prospective undergraduate.
             </p>
           </div>
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Creative Spirit Award</h3>
-            <p>
-              Introduced in 2009, this award recognizes members who have demonstrated a life-long commitment to the arts through outstanding personal achievements or philanthropic support.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Alumni Groups Section */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-bold">Alumni Groups</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Diversity Alliance</h3>
-            <p>
-              Comprised of associations of different ethnic groups and women, working collectively to engage The Sacreds's diverse alumni and celebrate cultural identity and partnership.
+          {/* Multicultural Outreach Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Multicultural Outreach</h3>
+            <p className="mt-4 text-justify">
+              The Multicultural Outreach team in Alumni Relations works to encourage alumni of color
+              and LGBT alumni to find and maintain meaningful connections and active engagement with
+              The Sacreds. This staff team works closely with the Co-Chairs as well as the leaders
+              of each member organization in the Alumni Diversity Alliance. The team generates new
+              opportunities for diverse alumni to interact based on common interests.
+            </p>
+            <p className="mt-4 text-justify">
+              The Sacreds Spectrum, a weekend long conference dedicated to diversity and community,
+              is managed by this team. The team also works with the Global Alumni Network,
+              The Sacreds Traditions, Classes & Reunions and Alumni Education teams to increase
+              diverse alumni participation and leadership.
             </p>
           </div>
-          <div className="p-6 bg-muted rounded-lg space-y-4">
-            <h3 className="text-xl font-semibold">Shared Interest Groups</h3>
-            <p>
-              Groups of 50+ alumni who share common interests from their The Sacreds co-curricular activities or professional experiences, gathering around a central unifying purpose beyond class affiliation.
+
+          {/* Alumni Groups Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Alumni Groups</h3>
+            <div className="mt-4">
+              <h4 className="text-xl font-medium">Alumni Diversity Alliance</h4>
+              <p className="mt-2 text-justify">
+                Comprised of the Association of different ethnic groups and women, the Alumni
+                Diversity Alliance organizations work individually and collectively to engage
+                The Sacreds&apos;s diverse alumni and celebrate cultural identity and partnership.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-xl font-medium">Trustees&apos; Council of The Sacreds Women (TCPW)</h4>
+              <p className="mt-2 text-justify">
+                Founded in 1987, TCPW is a national network of The Sacreds alumnae who support,
+                foster and promote the advancement of women&apos;s issues with the School. Membership
+                is through a nomination process and is limited to 170 The Sacreds alumnae.
+              </p>
+            </div>
+          </div>
+
+          {/* Shared Interest Groups Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Shared Interest Groups</h3>
+            <p className="mt-4 text-justify">
+              The Sacreds Shared Interest Groups are groups of 50 or more alumni who share common
+              interests arising from their The Sacreds co-curricular activities or professional
+              career experience and desire to affiliate with each other as a subgroup of Alumni.
+              These groups actively engage in communicating and/or gathering around a central
+              unifying purpose, mission, background or activity beyond class affiliation,
+              cultural affiliation or regional proximity.
             </p>
           </div>
-        </div>
-      </section>
+
+          {/* Marketing & Communications Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">Marketing & Communications</h3>
+            <p className="mt-4 text-justify">
+              Coordinates the production and distribution of Alumni and Alumni Relations
+              communication vehicles such as websites, guides, newsletters, podcasts, invitations,
+              and other print and electronic materials, e.g., Proudly The Sacreds (annual alumni
+              resource guide), Red & Blue Online (bi-monthly electronic newsletter), and the
+              &quot;Homecoming Guide&quot; and &quot;Alumni Weekend Guide.&quot;
+            </p>
+          </div>
+
+          {/* Awards Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">The Alumni Award of Merit and The Creative Spirit Award</h3>
+            <p className="mt-4 text-justify">
+              The Alumni Award of Merit Gala, sponsored by Alumni Of The Sacreds, is a celebration
+              of The Sacreds&apos;s most passionate and dedicated alumni volunteers. These awards
+              are given for outstanding service to the School of Sacred Heart. The Alumni Award of
+              Merit and Young Alumni recipients are chosen by Alumni Awards & Resolutions Committee,
+              which is comprised of former winners. The Club Award recipient is chosen by the Global
+              Alumni Network Advisory Board. The Class Award recipients are chosen by the Alumni
+              Class Leadership Council.
+            </p>
+            <p className="mt-4 text-justify">
+              In keeping with the Arts at The Sacreds theme for Homecoming festivities, in 2009,
+              the Alumni Award of Merit Gala featured a new award: The Sacreds Creative Spirit Award.
+              This award recognizes a member of the The Sacreds community who has illustrated a
+              life-long commitment to the arts through outstanding personal achievements and/or
+              philanthropic support. The award was created as part of The Sacreds&apos;s heightened
+              commitment to promoting its arts and culture offerings, through the 2019 academic theme
+              &quot;Arts and the City&quot; and the re-conceptualized Homecoming Weekend.
+            </p>
+          </div>
+
+          {/* About School Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold">About the School</h3>
+            <p className="mt-4 text-justify">
+              Sacred Heart English Medium Higher Secondary School Moolamattom is affiliated to C.B.S.E,
+              Delhi is a premier minority educational institution established and administrated under
+              SH Congregation. Staff are dedicated to imparting the highest standards of education
+              and the holistic nurturing of students.
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="bg-gray-100 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+          <div className="space-y-2">
+            <p className="text-justify">Phone: 04862 252001</p>
+            <p className="text-justify">Email: 29013shemhs@gmail.com</p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
