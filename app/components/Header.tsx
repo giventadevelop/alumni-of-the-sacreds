@@ -10,24 +10,22 @@ import Image from 'next/image';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const showLogo = pathname !== '/';
+  const isHomePage = pathname === '/';
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            {showLogo && (
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/logo.png"
-                  alt="Sacred Heart Logo"
-                  width={200}
-                  height={75}
-                  className="hover:scale-105 transition-transform duration-300"
-                />
-              </Link>
-            )}
+            <Link href="/" className="flex items-center">
+              <Image
+                src={isHomePage ? "/images/logo_without_text.png" : "/images/logo.png"}
+                alt="Sacred Heart Logo"
+                width={isHomePage ? 40 : 200}
+                height={isHomePage ? 40 : 75}
+                className="hover:scale-105 transition-transform duration-300"
+              />
+            </Link>
           </div>
           <div className="flex items-center justify-end flex-1">
             <nav className="hidden md:flex items-center space-x-8">
