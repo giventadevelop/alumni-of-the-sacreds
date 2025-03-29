@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -12,23 +12,41 @@ export default function Contact() {
   });
   const [status, setStatus] = useState('');
 
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+  }, []);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('sending');
 
     try {
+      // Send to the main recipient
       await emailjs.send(
-        'service_ta1217u',
-        'template_f7sbu5o',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
         {
           email: formData.email,
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           reply_to: formData.email,
-        },
-        'W4-P6wDlmYXDug-KG'
+        }
       );
+
+      // Send a copy to giventauser@gmail.com
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        {
+          email: 'giventauser@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          reply_to: formData.email,
+        }
+      );
+
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -67,7 +85,6 @@ export default function Contact() {
                     Mobile & WhatsApp: +91 94463 02001<br />
                     Mobile: +91 94477 12149<br />
                     Mobile: +91 96334 48855<br />
-
                   </p>
                 </div>
               </div>
