@@ -4,6 +4,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   images: { unoptimized: true },
   // Enable new features in Next.js 15
   experimental: {
@@ -19,4 +20,8 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+   module.exports = {
+     eslint: {
+       ignoreDuringBuilds: true,
+     },
+   }
