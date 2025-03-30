@@ -1,14 +1,19 @@
 {
   "extends": [
+    "next",
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint"
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-explicit-any": "warn",
-    "react-hooks/exhaustive-deps": "warn"
+    "@typescript-eslint/no-explicit-any": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "no-console": "warn"
   }
 }
