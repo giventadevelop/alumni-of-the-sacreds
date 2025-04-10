@@ -9,9 +9,7 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
-  "next": {
-    "output": "export"
-  },
+
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.0",
