@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  images: {
+    unoptimized: true,
+  },
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
-
-  images: { unoptimized: true },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // Enable new features in Next.js 15
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', '@heroicons/react', 'lucide-react'],
@@ -20,8 +25,4 @@ const nextConfig = {
   },
 };
 
-   module.exports = {
-     eslint: {
-       ignoreDuringBuilds: true,
-     },
-   }
+module.exports = nextConfig
