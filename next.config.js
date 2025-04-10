@@ -10,6 +10,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', '@heroicons/react', 'lucide-react'],
     optimizeCss: true,
+    appDir: true,
     webpackBuildWorker: true,
     turbo: {
       rules: {
@@ -18,10 +19,7 @@ const nextConfig = {
       },
     },
   },
+
 };
 
-   module.exports = {
-     eslint: {
-       ignoreDuringBuilds: true,
-     },
-   }
+module.exports = nextConfig;
