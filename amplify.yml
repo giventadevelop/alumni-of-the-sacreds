@@ -8,8 +8,10 @@ frontend:
       commands:
         - env | grep -e NODE_ENV -e NEXT_ >> .env.production
         - npm run build
+        # Copy static files to deployment directory
+        - cp -r out/* .
   artifacts:
-    baseDirectory: out
+    baseDirectory: .
     files:
       - '**/*'
   cache:
