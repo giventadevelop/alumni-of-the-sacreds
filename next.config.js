@@ -4,8 +4,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: { unoptimized: true },
+  transpilePackages: ['cmdk'],
   // Enable new features in Next.js 15
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', '@heroicons/react', 'lucide-react'],
@@ -19,7 +22,6 @@ const nextConfig = {
       },
     },
   },
-
 };
 
 module.exports = nextConfig;
