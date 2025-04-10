@@ -6,12 +6,9 @@ frontend:
         - npm install --legacy-peer-deps
     build:
       commands:
-        - env | grep -e NODE_ENV -e NEXT_ >> .env.production
         - npm run build
-        # Copy static files to deployment directory
-        - cp -r out/* .
   artifacts:
-    baseDirectory: .
+    baseDirectory: out
     files:
       - '**/*'
   cache:
