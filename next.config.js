@@ -15,16 +15,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', '@heroicons/react', 'lucide-react'],
     optimizeCss: true,
-    webpackBuildWorker: true,
-    turbo: {
-      rules: {
-        // Opt-in to our new Turbopack-powered Next.js development server
-        loaders: ['@next/font/google'],
-      },
-    },
   },
   // Configure asset prefix for production
   assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  distDir: '.next',
+  generateBuildId: async () => {
+    return 'build'
+  }
 };
 
 module.exports = nextConfig;
