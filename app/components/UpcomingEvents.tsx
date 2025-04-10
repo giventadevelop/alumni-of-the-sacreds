@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Event {
   id: number;
@@ -119,15 +120,14 @@ export default function UpcomingEvents() {
                   <Link href="/events" className="block h-full">
                     <div className="block p-2 h-full">
                       <div className="relative h-full rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
-                        {/* Full color background image */}
-                        <img
+                        <Image
                           src={event.imageUrl}
                           alt={event.title}
-                          className="absolute inset-0 w-full h-full object-cover"
+                          fill
+                          className="object-cover"
+                          priority={index === 0}
                         />
-                        {/* Bottom gradient overlay for text readability */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        {/* Text content */}
                         <div className="relative h-full flex flex-col justify-end p-4">
                           <h3 className="text-sm font-bold text-white mb-1 line-clamp-2">
                             {event.title}
@@ -143,15 +143,13 @@ export default function UpcomingEvents() {
                 {isLastSlide && (
                   <div className="block p-2 h-full">
                     <div className="relative h-full rounded-lg overflow-hidden shadow-lg">
-                      {/* Full color background image */}
-                      <img
+                      <Image
                         src={event.imageUrl}
                         alt={event.title}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
-                      {/* Bottom gradient overlay for text readability */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                      {/* Text content */}
                       <div className="relative h-full flex flex-col justify-end p-4">
                         <h3 className="text-sm font-bold text-white mb-1 line-clamp-2">
                           {event.title}

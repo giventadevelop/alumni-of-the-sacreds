@@ -20,6 +20,9 @@ frontend:
         - key: 'Cache-Control'
           value: 'public, max-age=0, must-revalidate'
   rewrites:
-    - source: '</^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>'
+    - source: '/(.*)'
       target: '/index.html'
       status: '200'
+  environment:
+    - name: NEXT_PUBLIC_BASE_URL
+      value: 'https://www.thesacreds.org'

@@ -62,11 +62,14 @@ export default function EventsPage() {
         {/* Image Section */}
         <div className="md:w-1/3 relative h-64 md:h-auto">
           <div className="w-full h-full p-4">
-            <img
-              src={event.imageUrl}
-              alt={event.title}
-              className="w-full h-full object-contain rounded-lg"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={event.imageUrl}
+                alt={event.title}
+                fill
+                className="object-contain rounded-lg"
+              />
+            </div>
           </div>
         </div>
 
