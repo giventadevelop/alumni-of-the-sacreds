@@ -23,8 +23,6 @@ const nextConfig = {
       },
     },
   },
-  // Add basePath if you're not using a custom domain
-  // basePath: process.env.NODE_ENV === 'production' ? '' : '',
   // Configure asset prefix for production
   assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
 };
