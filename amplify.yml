@@ -14,6 +14,9 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+  env:
+  variables:
+    AMPLIFY_MONOREPO_APP_ROOT: src/alumni-of-the-sacreds
   customHeaders:
     - pattern: '**/*'
       headers:
