@@ -7,25 +7,34 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Link from 'next/link';
 
-interface Event {
+export interface Event {
   id: number;
   title: string;
   date: string;
+  endDate?: string;
   location: string;
   contact: string;
   imageUrl: string;
   isVirtualNoEvents?: boolean;
 }
 
+export function todayIsoDate(now = new Date()): string {
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${now.getFullYear()}-${month}-${day}`;
+}
+
+/** Single-day events end on `date`. A later `endDate` keeps a running event current. */
+export function eventEndIso(event: Event): string {
+  return event.endDate || event.date || '';
+}
+
+export function isCurrentEvent(event: Event, today = todayIsoDate()): boolean {
+  const end = eventEndIso(event);
+  return Boolean(end) && end >= today;
+}
+
 export const events: Event[] = [
-  {
-    id: 1,
-    title: "No events scheduled at this time",
-    date: "",
-    location: "Sacred Heart English Medium HSS, Moolamattom",
-    contact: "",
-    imageUrl: "/img/event_small/calendar_event_icon.jfif",
-  },
   {
     id: 2,
     title: "S.H School Golden Jubilee celebration",
@@ -77,16 +86,20 @@ export const events: Event[] = [
 ];
 
 export default function UpcomingEvents() {
+  const publishedEvents = events.filter((event) => event.date);
+  const hasCurrentEvent = publishedEvents.some((event) => isCurrentEvent(event));
   const [initialSlide, setInitialSlide] = useState(0);
   const [isLastSlide, setIsLastSlide] = useState(false);
 
   useEffect(() => {
-    setInitialSlide(events.length - 1); // Show last item first
-  }, []);
+    setInitialSlide(Math.max(publishedEvents.length - 1, 0));
+  }, [publishedEvents.length]);
 
   const formatDate = (dateString: string) => {
-    if (!dateString) return ''; // Return empty string if date is empty
-    const date = new Date(dateString);
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-').map(Number);
+    if (!year || !month || !day) return dateString;
+    const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
@@ -97,7 +110,9 @@ export default function UpcomingEvents() {
   return (
     <section className="bg-gray-50 py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-xl font-bold text-[#40E0D0] mb-4 text-center">Upcoming Events</h2>
+        <h2 className="text-xl font-bold text-[#40E0D0] mb-4 text-center">
+          {hasCurrentEvent ? 'Upcoming Events' : 'Alumni Events'}
+        </h2>
         <div className="w-full flex justify-center">
           <Swiper
             modules={[Navigation]}
@@ -113,7 +128,7 @@ export default function UpcomingEvents() {
               setIsLastSlide(swiper.isEnd);
             }}
           >
-            {events.map((event, index) => (
+            {publishedEvents.map((event) => (
               <SwiperSlide key={event.id}>
                 {!isLastSlide && (
                   <Link href="/events" className="block h-full">

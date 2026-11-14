@@ -72,6 +72,10 @@
   }
 }
 
+.mh-events-search {
+  overflow: visible;
+}
+
 @layer base {
   * {
     @apply border-border;

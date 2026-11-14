@@ -26,7 +26,7 @@ export default function AboutContent() {
                   <p>Seeking to engage all Alumni Of The Sacreds in a mutually beneficial, lifelong connection to each other, their school, and encourage alumni support and guidance to advance The Sacreds's eminence for future generations.</p>
 
                   <h4>Alumni Of The Sacreds: Demographics, History, Purpose, and Structure</h4>
-                  <p>Alumni Of The Sacreds is the formal name for our family of over 4000 living The Sacreds graduates. Of these, the split of undergraduate degree (52.5%) and graduate degree holders (47.5%) is fairly even. Most alumni reside in India, but The Sacreds does have over 1000 alumni living abroad. Not surprisingly, the largest geographic concentration of our alumni is in the state of Kerala area.</p>
+                  <p>Alumni Of The Sacreds is the alumni association of Sacred Heart English Medium Higher Secondary School, Moolamattom, Kerala. Members also call the community The Sacreds.</p>
                   {/* ... Continue with other content ... */}
                 </div>
               </div>

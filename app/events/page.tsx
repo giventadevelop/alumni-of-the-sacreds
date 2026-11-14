@@ -1,13 +1,19 @@
 'use client';
 
-import { events } from '../components/UpcomingEvents';
-import Image from 'next/image';
-import { useMemo } from 'react';
+import { events, eventEndIso, isCurrentEvent, todayIsoDate } from '../components/UpcomingEvents';
+import { useMemo, useState } from 'react';
+import { matchesQuery } from '@/components/admin/AdminListSearchCombobox';
+import { PublicListingSearch } from '@/components/public/PublicListSearchCombobox';
 
 export default function EventsPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const today = todayIsoDate();
+
   const formatDate = (dateString: string) => {
-    if (!dateString) return ''; // Return empty string if date is empty
-    const date = new Date(dateString);
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-').map(Number);
+    if (!year || !month || !day) return dateString;
+    const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
@@ -17,24 +23,31 @@ export default function EventsPage() {
   };
 
   // Group events into upcoming, no events scheduled, and past
-  const { upcomingEvents, pastEvents, noEventsScheduled } = useMemo(() => {
-    const now = new Date();
-    now.setHours(0, 0, 0, 0); // Set to start of day for fair comparison
+  const eventFields = (event: (typeof events)[number]) => [
+    event.title,
+    event.location,
+    event.contact,
+    event.id,
+    event.date,
+    event.endDate,
+  ];
 
+  const { upcomingEvents, pastEvents, noEventsScheduled } = useMemo(() => {
     return events.reduce((acc, event) => {
-      // Handle "No events scheduled" items
       if (event.isVirtualNoEvents || (!event.date && event.title.toLowerCase().includes('no events scheduled'))) {
         acc.noEventsScheduled.push(event);
         return acc;
       }
 
-      // Skip other events with no date
       if (!event.date) {
         return acc;
       }
 
-      const eventDate = new Date(event.date);
-      if (eventDate >= now) {
+      if (!matchesQuery(eventFields(event), searchTerm)) {
+        return acc;
+      }
+
+      if (isCurrentEvent(event, today)) {
         acc.upcomingEvents.push(event);
       } else {
         acc.pastEvents.push(event);
@@ -45,15 +58,15 @@ export default function EventsPage() {
       pastEvents: [] as typeof events,
       noEventsScheduled: [] as typeof events
     });
-  }, []);
+  }, [searchTerm, today]);
 
   // Sort events by date
   const sortedUpcomingEvents = [...upcomingEvents].sort((a, b) =>
-    new Date(a.date).getTime() - new Date(b.date).getTime()
+    eventEndIso(a).localeCompare(eventEndIso(b))
   );
 
   const sortedPastEvents = [...pastEvents].sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime() // Most recent first
+    eventEndIso(b).localeCompare(eventEndIso(a))
   );
 
   const EventCard = ({ event }: { event: (typeof events)[0] }) => (
@@ -106,6 +119,20 @@ export default function EventsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Events</h1>
 
+        <PublicListingSearch
+          label="Search events"
+          inputId="events-search"
+          items={events.filter((event) => event.date)}
+          committedValue={searchTerm}
+          onCommit={setSearchTerm}
+          getSearchFields={eventFields}
+          getCommitValue={(event) => event.title}
+          formatPrimary={(event) => event.title}
+          formatSecondary={(event) => event.location || String(event.id)}
+          getKey={(event) => String(event.id)}
+          placeholder="Search by event title, location, contact, or id"
+        />
+
         {/* Upcoming Events Section */}
         {sortedUpcomingEvents.length > 0 && (
           <div className="mb-16">
@@ -144,7 +171,9 @@ export default function EventsPage() {
         {/* No Events Message */}
         {sortedUpcomingEvents.length === 0 && sortedPastEvents.length === 0 && noEventsScheduled.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">No events available at this time.</p>
+            <p className="text-gray-600 text-lg">
+              {searchTerm.trim() ? 'No events match that search.' : 'No events available at this time.'}
+            </p>
           </div>
         )}
       </div>

@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { matchesQuery } from '@/components/admin/AdminListSearchCombobox';
+import { PublicListingSearch } from '@/components/public/PublicListSearchCombobox';
 
 // Gallery data
 const galleryData = {
@@ -169,9 +171,31 @@ const galleryData = {
 
 };
 
+const albumSearchItems = Object.entries(galleryData).map(([key, gallery]) => ({
+  key,
+  id: gallery.id,
+  name: gallery.name,
+  captions: gallery.images.map((image) => `${image.title} ${image.id}`).join(' '),
+}));
+
+function albumFields(key: string, gallery: (typeof galleryData)[keyof typeof galleryData]) {
+  return [
+    gallery.name,
+    gallery.id,
+    key,
+    ...gallery.images.flatMap((image) => [image.title, image.id]),
+  ];
+}
+
 export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedGallery, setSelectedGallery] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const visibleGalleries = useMemo(
+    () => Object.entries(galleryData).filter(([key, gallery]) => matchesQuery(albumFields(key, gallery), searchTerm)),
+    [searchTerm],
+  );
 
   const handleGalleryClick = (galleryKey: string) => {
     setSelectedGallery(galleryKey);
@@ -191,8 +215,26 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold text-center mb-12">Our Gallery</h1>
 
+        <PublicListingSearch
+          label="Search galleries"
+          inputId="gallery-search"
+          items={albumSearchItems}
+          committedValue={searchTerm}
+          onCommit={setSearchTerm}
+          getSearchFields={(album) => [album.name, album.id, album.key, album.captions]}
+          getCommitValue={(album) => album.name}
+          formatPrimary={(album) => album.name}
+          formatSecondary={(album) => album.id}
+          getKey={(album) => album.key}
+          placeholder="Search by album title, photo title, or id"
+        />
+
+        {visibleGalleries.length === 0 ? (
+          <p className="text-center text-gray-600">No galleries match that search.</p>
+        ) : null}
+
         <div className="grid md:grid-cols-2 gap-8">
-          {Object.entries(galleryData).map(([key, gallery]) => (
+          {visibleGalleries.map(([key, gallery]) => (
             <div
               key={key}
               className="relative group cursor-pointer"
@@ -223,11 +265,11 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Featured Events Section */}
+        {visibleGalleries.length > 0 ? (
         <div className="mt-16">
           <h2 className="text-3xl font-bold text-center mb-8">Featured Events</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {Object.entries(galleryData).flatMap(([key, gallery]) =>
+            {visibleGalleries.flatMap(([key, gallery]) =>
               gallery.images.slice(0, 2).map(image => (
                 <div
                   key={image.id}
@@ -255,6 +297,7 @@ export default function Gallery() {
             )}
           </div>
         </div>
+        ) : null}
       </div>
 
       {lightboxOpen && selectedGallery && (

@@ -1,12 +1,16 @@
 'use client';
 
 import Link from "next/link";
+import { useCookieConsent } from "./CookieConsent";
+import { GoogleAdSenseRegion } from "./GoogleAdSenseRegion";
 
 function CopyrightYear() {
   return <>{new Date().getFullYear()}</>;
 }
 
 export default function Footer() {
+  const { openSettings } = useCookieConsent();
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,6 +28,15 @@ export default function Footer() {
               <Link href="/events" className="hover:text-blue-400">Events</Link>
               <Link href="/gallery" className="hover:text-blue-400">Gallery</Link>
               <Link href="/contact" className="hover:text-blue-400">Contact</Link>
+              <Link href="/privacy" className="hover:text-blue-400">Privacy</Link>
+              <Link href="/terms" className="hover:text-blue-400">Terms</Link>
+              <button
+                type="button"
+                className="text-left hover:text-blue-400"
+                onClick={openSettings}
+              >
+                Cookie settings
+              </button>
             </nav>
           </div>
           <div>
@@ -33,6 +46,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
+        <GoogleAdSenseRegion region="footer_strip" />
       </div>
     </footer>
   );
