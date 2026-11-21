@@ -175,6 +175,10 @@ export function AdminListSearchCombobox<T>({
         onFocus={() => setOpen(true)}
         onChange={(event) => {
           const next = event.target.value;
+          if (!next.trim()) {
+            commit('');
+            return;
+          }
           setInputValue(next);
           onInputChange?.(next);
           setOpen(true);
