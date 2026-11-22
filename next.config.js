@@ -9,6 +9,16 @@ const nextConfig = {
   },
   images: { unoptimized: true },
   transpilePackages: ['cmdk'],
+  async headers() {
+    return [
+      {
+        source: '/ads.txt',
+        headers: [
+          { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+        ],
+      },
+    ];
+  },
   // Enable new features in Next.js 15
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', '@heroicons/react', 'lucide-react'],

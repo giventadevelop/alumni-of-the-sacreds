@@ -24,8 +24,10 @@ Each domain is judged on its own published HTML. Another property's rejection do
 
 - **ads.txt matches the publisher ID**
   - `public/ads.txt` is served at `https://DOMAIN/ads.txt` and returns HTTP 200 with `Content-Type: text/plain`.
+  - In `next.config` `headers()`, set `Content-Type: text/plain; charset=utf-8` for `source: '/ads.txt'`.
   - Fetch the live URL. A file in the repo does not count until that URL returns the line.
-  - If the bare host redirects to `www`, follow that one hop and confirm the same path still returns the file. Google treats "Not found" as the crawler's last fetch, which can lag behind a file that is already live. Use **Check for updates** in the sites table after the file is correct.
+  - If the bare host redirects to `www`, follow that one hop and confirm the same path still returns the file. One same-site redirect is allowed.
+  - A correct live file can still show **Not found** until Google recrawls. Use **Check for updates** in the sites table. Do not delete the site and add it again.
 
 - **Account meta tag and verification script**
   - `src/app/layout.tsx` includes `<meta name="google-adsense-account" content="ca-pub-...">`.
@@ -61,6 +63,7 @@ Each domain is judged on its own published HTML. Another property's rejection do
 
 - **Public routes**
   - `src/middleware.ts` keeps `/`, `/ads.txt`, `/privacy(.*)`, `/terms(.*)`, `/about(.*)`, and `/contact(.*)` off the sign-in wall.
+  - The middleware matcher does not skip `.txt`, so Clerk runs on `/ads.txt`. The public matcher must include the literal `'/ads.txt'`. Without it, `auth.protect()` can send Google a sign-in page and the sites table stays **Not found**.
   - A signed-out request must not be sent to sign-in. `auth.protect()` must not run for these paths. A crawler that lands on the sign-in page fails ownership and ads.txt.
 
 - **Cookie choice before ad units**
@@ -107,18 +110,3 @@ Do these in order before clicking Verify:
 Write the pass or fail result in **that project's** `.cursor/rules/google_adsense_compliance.mdc`. One line per checklist item, with the file or live URL. Copy this rule into that repo if it does not have one yet.
 
 Do not add a site's status, domain, contact details, commit, or Amplify app id to this file. This file stays the shared checklist.
-
-## Project record
-
-Checked in this working tree. No published host is configured here, so live URL rows stay unverified.
-
-- ads.txt: PASS in `public/ads.txt` (shared owner publisher line). Live fetch: NOT VERIFIED.
-- Account meta tag and ownership script: PASS in `app/layout.tsx` (head meta plus `adsbygoogle.js` with `crossorigin="anonymous"`, not behind Accept). Live homepage: NOT VERIFIED.
-- Tenant settings / placements: FAIL. This site has no tenant settings store. `GoogleAdSenseRegion` is mounted for `footer_strip` from `app/components/Footer.tsx` and stays unloaded until Accept and until a numeric slot is set (`NEXT_PUBLIC_ADSENSE_FOOTER_SLOT` or another region env in `lib/adsense.ts`).
-- About and contact: PASS. `app/about/page.tsx` and `app/contact/page.tsx` name this organization and include its location, phone, and email. Both are public.
-- Privacy: PASS. `app/privacy/page.tsx` names the organization, states AdSense cookie use, links to Google's privacy policy and ad settings, and separates the head script from ad units that load after Accept.
-- Terms: PASS. `app/terms/page.tsx` names the organization, links to `/privacy`, and states that third-party ads come from Google AdSense.
-- Footer links: PASS. `app/components/Footer.tsx` links to `/privacy` and `/terms` and reopens cookie settings.
-- Public routes: PASS. `next.config.js` uses `output: 'export'`. There is no sign-in wall and no `auth.protect()`. Middleware is not added because static export cannot run it. `/`, `/ads.txt`, `/privacy`, `/terms`, `/about`, and `/contact` are public files.
-- Cookie choice before ad units: PASS. `app/components/CookieConsent.tsx` offers Accept and Reject and links to privacy and terms. `app/components/GoogleAdSenseRegion.tsx` pushes an ad unit only when the stored choice is `accepted` and a numeric slot exists. Reject leaves the unit unloaded. The head script remains either way.
-- One organization in the first HTML: PASS in the working tree. About no longer carries another institution's program copy. The homepage events list is the published gatherings, with no "not yet scheduled" card. `app/page.tsx` is still pre-rendered, so those events are in the first response. Live signed-out check: NOT VERIFIED.
