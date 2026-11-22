@@ -25,9 +25,22 @@ export function matchesQuery(
   fields: ReadonlyArray<string | number | null | undefined>,
   query: string,
 ): boolean {
-  const q = query.trim().toLowerCase();
-  if (!q) return true;
-  return fields.some((value) => String(value ?? '').toLowerCase().includes(q));
+  const phrase = query
+    .trim()
+    .toLowerCase()
+    .replace(/-/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!phrase) return true;
+  const haystack = fields
+    .map((value) => (value == null ? '' : String(value)))
+    .join(' ')
+    .toLowerCase()
+    .replace(/-/g, ' ')
+    .replace(/\s+/g, ' ');
+  const tokens = phrase.split(' ').filter((token) => token.length >= 2);
+  if (tokens.length === 0) return haystack.includes(phrase);
+  return tokens.every((token) => haystack.includes(token));
 }
 
 function filterLocally<T>(
